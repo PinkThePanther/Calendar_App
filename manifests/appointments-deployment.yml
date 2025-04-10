@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: appointments-deployment
+  name: appointments-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: appointments-deployment
+  template:
+    metadata:
+      labels:
+        app: appointments-deployment
+    spec:
+      serviceAccountName: appointments-sa
+      containers:
+      - image: imageuri
+        name: webserver
+        imagePullPolicy: Always
+        env:
+          - name: AWS_DEFAULT_REGION
+            value: awsregion
+          - name: DATABASE_HOST
+            value: rdsendpoint
+          - name: DATABASE_USER
+            value: appointments_web
+          - name: DATABASE_DB_NAME
+            value: django_appointments

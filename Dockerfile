@@ -1,4 +1,4 @@
-FROM public.ecr.aws/docker/library/python:3.11-slim
+FROM python:3.11
 EXPOSE 8080
 RUN apt update && apt install -y pkg-config gcc \
     default-libmysqlclient-dev pkg-config
